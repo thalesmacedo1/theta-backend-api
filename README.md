@@ -37,8 +37,8 @@ Antes de começar, você precisa ter instalado em sua máquina:
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/claude-sonnet-api.git
-cd claude-sonnet-api
+git clone https://github.com/thalesmacedo1/theta-backend-api.git
+cd theta-backend-api
 ```
 
 2. Instale as dependências:
@@ -119,19 +119,14 @@ http://localhost:3000/docs
 
 ### Configuração do Ambiente de Testes
 
-1. Configure as variáveis de ambiente para testes:
-```bash
-cp .env.test.example .env.test
-```
-
-2. Configure as variáveis no arquivo `.env.test`:
+1. Configure as variáveis no arquivo `.env.example`:
 ```env
 # Database
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
-POSTGRES_DB=test_db
+POSTGRES_DB=theta_db
 
 # Application
 PORT=3001
@@ -205,7 +200,7 @@ O projeto utiliza GitHub Actions para CI/CD. O pipeline executa:
 
 ### Status do Pipeline
 
-[![CI](https://github.com/seu-usuario/claude-sonnet-api/actions/workflows/ci.yml/badge.svg)](https://github.com/seu-usuario/claude-sonnet-api/actions/workflows/ci.yml)
+[![CI](https://github.com/thalesmacedo1/theta-backend-api/actions/workflows/ci.yml/badge.svg)](https://github.com/thalesmacedo1/theta-backend-api/actions/workflows/ci.yml)
 
 ## 📁 Estrutura do Projeto
 
@@ -241,7 +236,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- **Seu Nome** - *Trabalho Inicial* - [seu-usuario](https://github.com/seu-usuario)
+- **Seu Nome** - *Trabalho Inicial* - [thalesmacedo1](https://github.com/thalesmacedo1)
 
 ## 🙏 Agradecimentos
 
