@@ -198,12 +198,6 @@ npm test
 # Executar testes com cobertura
 npm run test:cov
 
-# Executar testes em modo watch
-npm run test:watch
-
-# Executar testes de módulos específicos
-npm run test:modules
-```
 
 ### Estrutura de testes
 
@@ -215,14 +209,9 @@ npm run test:modules
 - `npm run build` - Compila o projeto
 - `npm run start` - Inicia a aplicação
 - `npm run start:dev` - Inicia a aplicação em modo desenvolvimento
-- `npm run start:debug` - Inicia a aplicação em modo debug
 - `npm run start:prod` - Inicia a aplicação em modo produção
-- `npm run lint` - Executa o linter
-- `npm run format` - Formata o código
-- `npm run format:check` - Verifica a formatação do código
 - `npm run test` - Executa os testes
 - `npm run test:cov` - Executa os testes com cobertura
-- `npm run test:e2e` - Executa os testes end-to-end
 - `npm run docker:build` - Constrói as imagens Docker
 - `npm run docker:up` - Inicia os containers
 - `npm run docker:down` - Para os containers
@@ -240,7 +229,7 @@ O projeto utiliza GitHub Actions para CI/CD. O pipeline executa:
 
 ### Status do Pipeline
 
-[![CI](https://github.com/seu-usuario/claude-sonnet-api/actions/workflows/ci.yml/badge.svg)](https://github.com/seu-usuario/claude-sonnet-api/actions/workflows/ci.yml)
+[![CI](https://github.com/thalesmacedo1/theta-backend-api/actions/workflows/ci.yml/badge.svg)](https://github.com/thalesmacedo1//theta-backend-api/actions/workflows/ci.yml)
 
 ## 📁 Estrutura do Projeto
 
@@ -261,15 +250,3 @@ src/
 ├── middlewares/
 └── scripts/
 ```
-
-## 🤝 Contribuindo
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
