@@ -97,184 +97,156 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
-# API de Gerenciamento de Pedidos e Produtos
+# API de Gerenciamento de Pedidos
 
-Esta é uma API RESTful para gerenciamento de pedidos e produtos, desenvolvida com NestJS, seguindo os princípios SOLID e boas práticas de desenvolvimento.
+API REST desenvolvida com NestJS para gerenciamento de produtos e pedidos, utilizando PostgreSQL como banco de dados.
 
-## Implementação
+## 🚀 Tecnologias
 
-### Tecnologias utilizadas
+- [NestJS](https://nestjs.com/) - Framework Node.js para construção de aplicações escaláveis
+- [PostgreSQL](https://www.postgresql.org/) - Banco de dados relacional
+- [TypeORM](https://typeorm.io/) - ORM para TypeScript
+- [Swagger](https://swagger.io/) - Documentação da API
+- [Docker](https://www.docker.com/) - Containerização da aplicação
+- [Jest](https://jestjs.io/) - Framework de testes
 
-- Node.js
-- NestJS
-- TypeORM
-- PostgreSQL
-- Class Validator
-- TypeScript
+## 📋 Pré-requisitos
 
-### Arquitetura
+- Node.js 20.x
+- PostgreSQL 16.x
+- Docker e Docker Compose (opcional)
 
-O projeto segue uma arquitetura modular e em camadas, aplicando os princípios SOLID:
+## 🔧 Instalação
 
-- **Single Responsibility Principle**: Cada classe tem uma única responsabilidade.
-- **Open/Closed Principle**: As entidades estão abertas para extensão, mas fechadas para modificação.
-- **Liskov Substitution Principle**: Os tipos derivados podem substituir seus tipos base.
-- **Interface Segregation Principle**: As interfaces são específicas para os clientes.
-- **Dependency Inversion Principle**: Depende de abstrações, não de implementações concretas.
+1. Clone o repositório:
+```bash
+git clone https://github.com/thalesmacedo1/theta-backend-api.git
+cd theta-backend-api
+```
 
-### Estrutura do projeto
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env
+```
+
+4. Configure as variáveis no arquivo `.env`:
+```env
+# Database
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=theta_db
+
+# Application
+PORT=3000
+NODE_ENV=development
+```
+
+## 🚀 Executando a aplicação
+
+### Desenvolvimento local
+
+1. Inicie o PostgreSQL:
+```bash
+docker-compose up postgres -d
+```
+
+2. Crie o banco de dados:
+```bash
+npm run db:create
+```
+
+3. Inicie a aplicação em modo desenvolvimento:
+```bash
+npm run start:dev
+```
+
+### Docker
+
+1. Construa e inicie os containers:
+```bash
+npm run docker:build
+npm run docker:up
+```
+
+2. Para desenvolvimento com hot-reload:
+```bash
+npm run docker:dev
+```
+
+## 📚 Documentação da API
+
+A documentação da API está disponível através do Swagger UI em:
+```
+http://localhost:3000/docs
+```
+
+## 🧪 Testes
+
+### Executando testes
+
+```bash
+# Executar todos os testes
+npm test
+
+# Executar testes com cobertura
+npm run test:cov
+
+
+### Estrutura de testes
+
+- `src/**/*.spec.ts` - Testes unitários
+- `test/**/*.e2e-spec.ts` - Testes end-to-end
+
+## 📦 Scripts disponíveis
+
+- `npm run build` - Compila o projeto
+- `npm run start` - Inicia a aplicação
+- `npm run start:dev` - Inicia a aplicação em modo desenvolvimento
+- `npm run start:prod` - Inicia a aplicação em modo produção
+- `npm run test` - Executa os testes
+- `npm run test:cov` - Executa os testes com cobertura
+- `npm run docker:build` - Constrói as imagens Docker
+- `npm run docker:up` - Inicia os containers
+- `npm run docker:down` - Para os containers
+- `npm run docker:dev` - Inicia os containers em modo desenvolvimento
+
+## 🔄 CI/CD
+
+O projeto utiliza GitHub Actions para CI/CD. O pipeline executa:
+
+- Verificação de formatação do código
+- Linting
+- Build do projeto
+- Testes unitários e de cobertura
+- Geração de relatórios de teste
+
+### Status do Pipeline
+
+[![CI](https://github.com/thalesmacedo1/theta-backend-api/actions/workflows/ci.yml/badge.svg)](https://github.com/thalesmacedo1//theta-backend-api/actions/workflows/ci.yml)
+
+## 📁 Estrutura do Projeto
 
 ```
 src/
-├── config/
-│   └── database.config.ts
 ├── modules/
 │   ├── produtos/
 │   │   ├── controllers/
-│   │   │   └── produto.controller.ts
-│   │   ├── dto/
-│   │   │   ├── create-produto.dto.ts
-│   │   │   └── update-produto.dto.ts
-│   │   ├── entities/
-│   │   │   └── produto.entity.ts
-│   │   ├── repositories/
-│   │   │   └── produto.repository.ts
 │   │   ├── services/
-│   │   │   └── produto.service.ts
-│   │   └── produtos.module.ts
+│   │   ├── entities/
+│   │   └── dto/
 │   └── pedidos/
 │       ├── controllers/
-│       │   └── pedido.controller.ts
-│       ├── dto/
-│       │   └── create-pedido.dto.ts
-│       ├── entities/
-│       │   ├── pedido.entity.ts
-│       │   └── pedido-produto.entity.ts
-│       ├── repositories/
-│       │   └── pedido.repository.ts
 │       ├── services/
-│       │   └── pedido.service.ts
-│       └── pedidos.module.ts
-├── scripts/
-│   └── create-database.ts
-├── app.module.ts
-├── app.controller.ts
-├── app.service.ts
-└── main.ts
-```
-
-### Fluxo de funcionamento
-
-1. **Criação de Produtos**:
-   - O cliente envia uma requisição POST para `/produtos` com os dados do produto.
-   - O controller recebe a requisição e passa para o service.
-   - O service valida os dados e chama o repository para criar o produto no banco de dados.
-   - O repository salva os dados e retorna o produto criado.
-   - O controller retorna a resposta ao cliente.
-
-2. **Criação de Pedidos**:
-   - O cliente envia uma requisição POST para `/pedidos` com os produtos e quantidades.
-   - O service verifica se há estoque disponível para cada produto.
-   - Se houver estoque, o pedido é criado com status "Pendente".
-   - Se o pedido for marcado como "Concluído", o estoque é automaticamente decrementado.
-   - O pedido é salvo no banco de dados e retornado ao cliente.
-
-3. **Atualização de Status de Pedido**:
-   - O cliente envia uma requisição PATCH para `/pedidos/:id/status` com o novo status.
-   - Se o status for alterado para "Concluído", o estoque é decrementado.
-   - O pedido atualizado é retornado ao cliente.
-
-## Funcionalidades
-
-### Produtos
-
-- Criar produtos
-- Listar todos os produtos
-- Buscar produto por ID
-- Atualizar produto
-- Deletar produto
-
-### Pedidos
-
-- Criar pedidos (com verificação de estoque)
-- Listar todos os pedidos
-- Buscar pedido por ID
-- Atualizar status do pedido (Pendente, Concluído, Cancelado)
-- Atualização automática do estoque quando um pedido é concluído
-
-## Configuração
-
-1. Clone o repositório
-2. Instale as dependências:
-   ```
-   npm install
-   ```
-3. Configure o arquivo `.env` com as informações do banco de dados:
-   ```
-   # Configurações do banco de dados
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USERNAME=postgres
-   DB_PASSWORD=postgres
-   DB_DATABASE=gerenciador_pedidos
-   DB_SYNCHRONIZE=true
-
-   # Configurações da aplicação
-   PORT=3000
-   ```
-4. Crie o banco de dados:
-   ```
-   npm run db:create
-   ```
-5. Inicie o servidor:
-   ```
-   npm run start:dev
-   ```
-
-## Endpoints da API
-
-### Produtos
-
-- `POST /produtos` - Criar um novo produto
-- `GET /produtos` - Listar todos os produtos
-- `GET /produtos/:id` - Buscar produto por ID
-- `PUT /produtos/:id` - Atualizar um produto
-- `DELETE /produtos/:id` - Deletar um produto
-
-### Pedidos
-
-- `POST /pedidos` - Criar um novo pedido
-- `GET /pedidos` - Listar todos os pedidos
-- `GET /pedidos/:id` - Buscar pedido por ID
-- `PATCH /pedidos/:id/status` - Atualizar status do pedido
-
-## Exemplos de uso
-
-### Criar um produto
-
-```bash
-curl -X POST http://localhost:3000/produtos \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nome": "Produto Teste",
-    "categoria": "Eletrônicos",
-    "descricao": "Um produto de teste",
-    "preco": 100.50,
-    "quantidade_estoque": 10
-  }'
-```
-
-### Criar um pedido
-
-```bash
-curl -X POST http://localhost:3000/pedidos \
-  -H "Content-Type: application/json" \
-  -d '{
-    "items": [
-      {
-        "produtoId": "id-do-produto",
-        "quantidade": 2
-      }
-    ]
-  }'
+│       ├── entities/
+│       └── dto/
+├── config/
+├── middlewares/
+└── scripts/
 ```
