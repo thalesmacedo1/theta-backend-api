@@ -113,10 +113,6 @@ O projeto utiliza GitHub Actions para CI/CD. O pipeline executa:
 - Testes unitários e de cobertura
 - Geração de relatórios de teste
 
-### Status do Pipeline
-
-[![CI](https://github.com/thalesmacedo1/theta-backend-api/actions/workflows/ci.yml/badge.svg)](https://github.com/thalesmacedo1/theta-backend-api/actions/workflows/ci.yml)
-
 ## 📁 Estrutura do Projeto
 
 ```
