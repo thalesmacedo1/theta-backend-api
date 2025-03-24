@@ -120,8 +120,8 @@ API REST desenvolvida com NestJS para gerenciamento de produtos e pedidos, utili
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/claude-sonnet-api.git
-cd claude-sonnet-api
+git clone https://github.com/thalesmacedo1/theta-backend-api.git
+cd theta-backend-api
 ```
 
 2. Instale as dependências:
