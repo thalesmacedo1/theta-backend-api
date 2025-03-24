@@ -56,23 +56,6 @@ http://localhost:3000/docs
 ```
 
 ## 🧪 Testes
-
-### Configuração do Ambiente de Testes
-
-1. Configure as variáveis no arquivo `.env`:
-```env
-# Database
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-POSTGRES_DB=theta_db
-
-# Application
-PORT=3000
-NODE_ENV=test
-```
-
 ### Executando os Testes
 
 ```bash
