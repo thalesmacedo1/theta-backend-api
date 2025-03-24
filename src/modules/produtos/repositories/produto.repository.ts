@@ -29,7 +29,10 @@ export class ProdutoRepository {
     return this.produtoRepository.save(produto);
   }
 
-  async update(id: string, updateProdutoDto: UpdateProdutoDto): Promise<Produto> {
+  async update(
+    id: string,
+    updateProdutoDto: UpdateProdutoDto,
+  ): Promise<Produto> {
     const produto = await this.findOne(id);
     await this.produtoRepository.update(id, updateProdutoDto);
     return this.findOne(id);
@@ -45,4 +48,4 @@ export class ProdutoRepository {
     produto.quantidade_estoque -= quantidade;
     return this.produtoRepository.save(produto);
   }
-} 
+}

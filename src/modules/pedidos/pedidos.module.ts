@@ -7,11 +7,8 @@ import { PedidoRepository } from './repositories/pedido.repository';
 import { ProdutosModule } from '../produtos/produtos.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Pedido]),
-    ProdutosModule,
-  ],
+  imports: [TypeOrmModule.forFeature([Pedido]), ProdutosModule],
   controllers: [PedidoController],
   providers: [PedidoService, PedidoRepository],
 })
-export class PedidosModule {} 
+export class PedidosModule {}

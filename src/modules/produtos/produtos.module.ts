@@ -11,4 +11,4 @@ import { ProdutoRepository } from './repositories/produto.repository';
   providers: [ProdutoService, ProdutoRepository],
   exports: [ProdutoService],
 })
-export class ProdutosModule {} 
+export class ProdutosModule {}

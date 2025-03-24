@@ -20,7 +20,8 @@ export class UpdateProdutoDto {
 
   @ApiPropertyOptional({
     description: 'Descrição detalhada do produto',
-    example: 'Smartphone de última geração com câmera de alta resolução e processador de última geração',
+    example:
+      'Smartphone de última geração com câmera de alta resolução e processador de última geração',
   })
   @IsOptional()
   @IsString({ message: 'A descrição deve ser uma string' })
@@ -43,4 +44,4 @@ export class UpdateProdutoDto {
   @IsNumber({}, { message: 'A quantidade em estoque deve ser um número' })
   @Min(0, { message: 'A quantidade em estoque deve ser um valor positivo' })
   quantidade_estoque?: number;
-} 
+}

@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Patch,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { PedidoService } from '../services/pedido.service';
 import { CreatePedidoDto } from '../dto/create-pedido.dto';
 import { Pedido, StatusPedido } from '../entities/pedido.entity';
@@ -18,8 +11,8 @@ export class PedidoController {
 
   @Post()
   @ApiOperation({ summary: 'Criar um novo pedido' })
-  @ApiResponse({ 
-    status: 201, 
+  @ApiResponse({
+    status: 201,
     description: 'Pedido criado com sucesso',
     type: Pedido,
   })
@@ -29,8 +22,8 @@ export class PedidoController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todos os pedidos' })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Lista de pedidos retornada com sucesso',
     type: [Pedido],
   })
@@ -41,13 +34,13 @@ export class PedidoController {
   @Get(':id')
   @ApiOperation({ summary: 'Buscar um pedido por ID' })
   @ApiParam({ name: 'id', description: 'ID do pedido' })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Pedido encontrado com sucesso',
     type: Pedido,
   })
-  @ApiResponse({ 
-    status: 404, 
+  @ApiResponse({
+    status: 404,
     description: 'Pedido não encontrado',
   })
   async findOne(@Param('id') id: string): Promise<Pedido> {
@@ -57,13 +50,13 @@ export class PedidoController {
   @Patch(':id/status')
   @ApiOperation({ summary: 'Atualizar o status de um pedido' })
   @ApiParam({ name: 'id', description: 'ID do pedido' })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Status do pedido atualizado com sucesso',
     type: Pedido,
   })
-  @ApiResponse({ 
-    status: 404, 
+  @ApiResponse({
+    status: 404,
     description: 'Pedido não encontrado',
   })
   async atualizarStatus(
@@ -72,4 +65,4 @@ export class PedidoController {
   ): Promise<Pedido> {
     return this.pedidoService.atualizarStatus(id, status);
   }
-} 
+}

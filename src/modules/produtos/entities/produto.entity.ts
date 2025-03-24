@@ -19,4 +19,4 @@ export class Produto {
 
   @Column({ type: 'int', nullable: false })
   quantidade_estoque: number;
-} 
+}

@@ -14,7 +14,7 @@ async function createDatabase() {
 
   try {
     await client.connect();
-    
+
     const checkResult = await client.query(`
       SELECT 1 FROM pg_database WHERE datname = '${process.env.DB_DATABASE}'
     `);
@@ -22,7 +22,9 @@ async function createDatabase() {
     if (checkResult.rowCount === 0) {
       console.log(`Criando banco de dados "${process.env.DB_DATABASE}"...`);
       await client.query(`CREATE DATABASE ${process.env.DB_DATABASE}`);
-      console.log(`Banco de dados "${process.env.DB_DATABASE}" criado com sucesso!`);
+      console.log(
+        `Banco de dados "${process.env.DB_DATABASE}" criado com sucesso!`,
+      );
     } else {
       console.log(`Banco de dados "${process.env.DB_DATABASE}" já existe.`);
     }
@@ -33,4 +35,4 @@ async function createDatabase() {
   }
 }
 
-createDatabase(); 
+createDatabase();

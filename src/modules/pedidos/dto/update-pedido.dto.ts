@@ -11,4 +11,4 @@ export class UpdatePedidoDto {
   @IsOptional()
   @IsEnum(StatusPedido, { message: 'Status inválido' })
   status?: StatusPedido;
-} 
+}
