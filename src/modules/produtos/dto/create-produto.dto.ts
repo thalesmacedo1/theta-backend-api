@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumber, IsString, IsOptional, Min } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  IsOptional,
+  Min,
+} from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateProdutoDto {
@@ -43,4 +49,4 @@ export class CreateProdutoDto {
   @IsNumber({}, { message: 'A quantidade em estoque deve ser um número' })
   @Min(0, { message: 'A quantidade em estoque deve ser um valor positivo' })
   quantidade_estoque: number;
-} 
+}

@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Pedido } from './pedido.entity';
 import { Produto } from '../../produtos/entities/produto.entity';
 
@@ -7,7 +13,7 @@ export class PedidoProduto {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Pedido, pedido => pedido.pedidoProdutos)
+  @ManyToOne(() => Pedido, (pedido) => pedido.pedidoProdutos)
   @JoinColumn({ name: 'pedido_id' })
   pedido: Pedido;
 
@@ -23,4 +29,4 @@ export class PedidoProduto {
 
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
   subtotal: number;
-} 
+}

@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsArray, ValidateNested, IsEnum, IsOptional } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsArray,
+  ValidateNested,
+  IsEnum,
+  IsOptional,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 import { StatusPedido } from '../entities/pedido.entity';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -48,4 +54,4 @@ export class CreatePedidoDto {
   @IsOptional()
   @IsEnum(StatusPedido, { message: 'Status inválido' })
   status?: StatusPedido;
-} 
+}

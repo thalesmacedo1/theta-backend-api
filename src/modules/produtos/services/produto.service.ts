@@ -20,7 +20,10 @@ export class ProdutoService {
     return this.produtoRepository.create(createProdutoDto);
   }
 
-  async update(id: string, updateProdutoDto: UpdateProdutoDto): Promise<Produto> {
+  async update(
+    id: string,
+    updateProdutoDto: UpdateProdutoDto,
+  ): Promise<Produto> {
     return this.produtoRepository.update(id, updateProdutoDto);
   }
 
@@ -36,4 +39,4 @@ export class ProdutoService {
   async decrementarEstoque(id: string, quantidade: number): Promise<Produto> {
     return this.produtoRepository.decrementarEstoque(id, quantidade);
   }
-} 
+}

@@ -32,4 +32,4 @@ export class PedidoRepository {
     pedido.status = status;
     return this.pedidoRepository.save(pedido);
   }
-} 
+}

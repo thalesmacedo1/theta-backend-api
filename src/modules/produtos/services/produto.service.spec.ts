@@ -244,14 +244,19 @@ describe('ProdutoService', () => {
         quantidade_estoque: 5,
       };
 
-      mockProdutoRepository.decrementarEstoque.mockResolvedValue(produtoDepoisDecremento);
+      mockProdutoRepository.decrementarEstoque.mockResolvedValue(
+        produtoDepoisDecremento,
+      );
 
       // Act
       const result = await service.decrementarEstoque(id, quantidade);
 
       // Assert
-      expect(repository.decrementarEstoque).toHaveBeenCalledWith(id, quantidade);
+      expect(repository.decrementarEstoque).toHaveBeenCalledWith(
+        id,
+        quantidade,
+      );
       expect(result).toEqual(produtoDepoisDecremento);
     });
   });
-}); 
+});

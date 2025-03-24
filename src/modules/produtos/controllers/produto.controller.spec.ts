@@ -162,4 +162,4 @@ describe('ProdutoController', () => {
       expect(service.remove).toHaveBeenCalledWith(id);
     });
   });
-}); 
+});

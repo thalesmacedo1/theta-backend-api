@@ -9,4 +9,4 @@ jest.setTimeout(10000);
 // Limpa todos os mocks após cada teste
 afterEach(() => {
   jest.clearAllMocks();
-}); 
+});

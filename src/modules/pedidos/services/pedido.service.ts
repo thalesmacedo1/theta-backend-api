@@ -45,13 +45,13 @@ export class PedidoService {
     // Adicionar os produtos ao pedido
     for (const item of createPedidoDto.items) {
       const produto = await this.produtoService.findOne(item.produtoId);
-      
+
       const pedidoProduto = new PedidoProduto();
       pedidoProduto.produto = produto;
       pedidoProduto.quantidade = item.quantidade;
       pedidoProduto.preco_unitario = produto.preco;
       pedidoProduto.subtotal = produto.preco * item.quantidade;
-      
+
       pedido.pedidoProdutos.push(pedidoProduto);
       pedido.total_pedido += pedidoProduto.subtotal;
     }
@@ -69,12 +69,15 @@ export class PedidoService {
 
   async atualizarStatus(id: string, status: StatusPedido): Promise<Pedido> {
     const pedido = await this.pedidoRepository.findOne(id);
-    
+
     // Se o pedido estiver sendo atualizado para CONCLUIDO, decrementar estoque
-    if (status === StatusPedido.CONCLUIDO && pedido.status !== StatusPedido.CONCLUIDO) {
+    if (
+      status === StatusPedido.CONCLUIDO &&
+      pedido.status !== StatusPedido.CONCLUIDO
+    ) {
       await this.atualizarEstoque(pedido);
     }
-    
+
     return this.pedidoRepository.atualizarStatus(id, status);
   }
 
@@ -86,4 +89,4 @@ export class PedidoService {
       );
     }
   }
-} 
+}

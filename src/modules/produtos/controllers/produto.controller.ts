@@ -22,8 +22,8 @@ export class ProdutoController {
 
   @Post()
   @ApiOperation({ summary: 'Criar um novo produto' })
-  @ApiResponse({ 
-    status: 201, 
+  @ApiResponse({
+    status: 201,
     description: 'Produto criado com sucesso',
     type: Produto,
   })
@@ -33,8 +33,8 @@ export class ProdutoController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todos os produtos' })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Lista de produtos retornada com sucesso',
     type: [Produto],
   })
@@ -45,13 +45,13 @@ export class ProdutoController {
   @Get(':id')
   @ApiOperation({ summary: 'Buscar um produto por ID' })
   @ApiParam({ name: 'id', description: 'ID do produto' })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Produto encontrado com sucesso',
     type: Produto,
   })
-  @ApiResponse({ 
-    status: 404, 
+  @ApiResponse({
+    status: 404,
     description: 'Produto não encontrado',
   })
   async findOne(@Param('id') id: string): Promise<Produto> {
@@ -61,13 +61,13 @@ export class ProdutoController {
   @Put(':id')
   @ApiOperation({ summary: 'Atualizar um produto' })
   @ApiParam({ name: 'id', description: 'ID do produto' })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Produto atualizado com sucesso',
     type: Produto,
   })
-  @ApiResponse({ 
-    status: 404, 
+  @ApiResponse({
+    status: 404,
     description: 'Produto não encontrado',
   })
   async update(
@@ -81,15 +81,15 @@ export class ProdutoController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Remover um produto' })
   @ApiParam({ name: 'id', description: 'ID do produto' })
-  @ApiResponse({ 
-    status: 204, 
+  @ApiResponse({
+    status: 204,
     description: 'Produto removido com sucesso',
   })
-  @ApiResponse({ 
-    status: 404, 
+  @ApiResponse({
+    status: 404,
     description: 'Produto não encontrado',
   })
   async remove(@Param('id') id: string): Promise<void> {
     await this.produtoService.remove(id);
   }
-} 
+}

@@ -13,4 +13,4 @@ export const getDatabaseConfig = (
   entities: ['dist/**/*.entity{.ts,.js}'],
   synchronize: configService.get<boolean>('POSTGRES_SYNCHRONIZE'),
   autoLoadEntities: true,
-}); 
+});

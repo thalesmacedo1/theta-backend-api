@@ -198,7 +198,9 @@ describe('PedidoService', () => {
       mockProdutoService.findOne.mockResolvedValue(produto);
 
       // Act & Assert
-      await expect(service.create(createPedidoDto)).rejects.toThrow(BadRequestException);
+      await expect(service.create(createPedidoDto)).rejects.toThrow(
+        BadRequestException,
+      );
       expect(produtoService.verificarEstoque).toHaveBeenCalledWith(
         itemPedido.produtoId,
         itemPedido.quantidade,
@@ -274,7 +276,7 @@ describe('PedidoService', () => {
       // Arrange
       const id = 'pedido-id';
       const novoStatus = StatusPedido.CONCLUIDO;
-      
+
       const pedidoAntesAtualizacao = {
         id,
         status: StatusPedido.PENDENTE,
@@ -291,7 +293,7 @@ describe('PedidoService', () => {
         total_pedido: 200,
         data_criacao: new Date(),
       };
-      
+
       const pedidoAtualizado = {
         ...pedidoAntesAtualizacao,
         status: novoStatus,
@@ -306,7 +308,10 @@ describe('PedidoService', () => {
       });
 
       // Espionar o método privado atualizarEstoque
-      const atualizarEstoqueSpy = jest.spyOn(service as any, 'atualizarEstoque');
+      const atualizarEstoqueSpy = jest.spyOn(
+        service as any,
+        'atualizarEstoque',
+      );
 
       // Act
       const result = await service.atualizarStatus(id, novoStatus);
@@ -314,7 +319,10 @@ describe('PedidoService', () => {
       // Assert
       expect(pedidoRepository.findOne).toHaveBeenCalledWith(id);
       expect(atualizarEstoqueSpy).toHaveBeenCalledWith(pedidoAntesAtualizacao);
-      expect(pedidoRepository.atualizarStatus).toHaveBeenCalledWith(id, novoStatus);
+      expect(pedidoRepository.atualizarStatus).toHaveBeenCalledWith(
+        id,
+        novoStatus,
+      );
       expect(result).toEqual(pedidoAtualizado);
 
       // Restaurar o spy
@@ -325,7 +333,7 @@ describe('PedidoService', () => {
       // Arrange
       const id = 'pedido-id';
       const novoStatus = StatusPedido.CANCELADO;
-      
+
       const pedidoAntesAtualizacao = {
         id,
         status: StatusPedido.PENDENTE,
@@ -342,7 +350,7 @@ describe('PedidoService', () => {
         total_pedido: 200,
         data_criacao: new Date(),
       };
-      
+
       const pedidoAtualizado = {
         ...pedidoAntesAtualizacao,
         status: novoStatus,
@@ -352,7 +360,10 @@ describe('PedidoService', () => {
       mockPedidoRepository.atualizarStatus.mockResolvedValue(pedidoAtualizado);
 
       // Espionar o método privado atualizarEstoque
-      const atualizarEstoqueSpy = jest.spyOn(service as any, 'atualizarEstoque');
+      const atualizarEstoqueSpy = jest.spyOn(
+        service as any,
+        'atualizarEstoque',
+      );
 
       // Act
       const result = await service.atualizarStatus(id, novoStatus);
@@ -360,7 +371,10 @@ describe('PedidoService', () => {
       // Assert
       expect(pedidoRepository.findOne).toHaveBeenCalledWith(id);
       expect(atualizarEstoqueSpy).not.toHaveBeenCalled();
-      expect(pedidoRepository.atualizarStatus).toHaveBeenCalledWith(id, novoStatus);
+      expect(pedidoRepository.atualizarStatus).toHaveBeenCalledWith(
+        id,
+        novoStatus,
+      );
       expect(result).toEqual(pedidoAtualizado);
 
       // Restaurar o spy
@@ -371,7 +385,7 @@ describe('PedidoService', () => {
       // Arrange
       const id = 'pedido-id';
       const novoStatus = StatusPedido.CONCLUIDO;
-      
+
       const pedidoAntesAtualizacao = {
         id,
         status: StatusPedido.CONCLUIDO,
@@ -388,7 +402,7 @@ describe('PedidoService', () => {
         total_pedido: 200,
         data_criacao: new Date(),
       };
-      
+
       const pedidoAtualizado = {
         ...pedidoAntesAtualizacao,
         status: novoStatus,
@@ -398,7 +412,10 @@ describe('PedidoService', () => {
       mockPedidoRepository.atualizarStatus.mockResolvedValue(pedidoAtualizado);
 
       // Espionar o método privado atualizarEstoque
-      const atualizarEstoqueSpy = jest.spyOn(service as any, 'atualizarEstoque');
+      const atualizarEstoqueSpy = jest.spyOn(
+        service as any,
+        'atualizarEstoque',
+      );
 
       // Act
       const result = await service.atualizarStatus(id, novoStatus);
@@ -406,11 +423,14 @@ describe('PedidoService', () => {
       // Assert
       expect(pedidoRepository.findOne).toHaveBeenCalledWith(id);
       expect(atualizarEstoqueSpy).not.toHaveBeenCalled();
-      expect(pedidoRepository.atualizarStatus).toHaveBeenCalledWith(id, novoStatus);
+      expect(pedidoRepository.atualizarStatus).toHaveBeenCalledWith(
+        id,
+        novoStatus,
+      );
       expect(result).toEqual(pedidoAtualizado);
 
       // Restaurar o spy
       atualizarEstoqueSpy.mockRestore();
     });
   });
-}); 
+});
